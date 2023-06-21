@@ -1,6 +1,11 @@
 {
     "compilerOptions": {
       "target": "es5",
+      "lib" : [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
       "module": "commonjs",
       "jsx": "react",
       "outDir": "./dist",
@@ -8,6 +13,6 @@
       "esModuleInterop": true
     },
     "include": [
-      "./src/**/*"
+      "src"
     ]
-  }
+  } 
