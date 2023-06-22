@@ -1,10 +1,10 @@
 class Etudiant{
     
-    id : number
-    name : String
+    id : string
+    name : string
 
 
-    public constructor (id : number, name : string)
+    public constructor (id : string, name : string)
     {
         this.id = id
         this.name = name
