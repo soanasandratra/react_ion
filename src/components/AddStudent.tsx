@@ -13,17 +13,18 @@ const AddStudent : FunctionComponent<Props>  = ( { add }) => {
         e.preventDefault()
         const id : string = uuid()
         add(new Etudiant(id, newStudent))
+        setNewStudent("")
     }
 
     return (
-        <>
+        <div className="mt-5">
             <form>
-                <input type="text" placeholder="nom d'etudiant" onChange={(e) => {
+                <input type="text" placeholder="nom d'etudiant" className="form-control" value={newStudent} onChange={(e) => {
                     setNewStudent(e.target.value)
                 }} /> <br />
-                <input type="submit" value="Enregistrer" onClick={sendNewEtudiant}/>
+                <input type="submit" className="btn btn-success" value="Enregistrer" onClick={sendNewEtudiant}/>
             </form>
-        </>
+        </div>
     )
 }
 

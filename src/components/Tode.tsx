@@ -19,24 +19,36 @@ const Todo: FunctionComponent = () => {
         ]
     )
 
+    const [warning, setWarning] = useState<boolean>(false)
+
     const studentsListItem = students.map(student => {
         return (
-            <li key={student.id}>{student.name}</li>
+            <li className="list-group-item" key={student.id}>{student.name}</li>
         )
     }
     )
 
     const ajoutEtudiant = (etudiant : Etudiant) => {
-        setStudents(
-            [...students, {id : etudiant.id, name : etudiant.name}]
-        )
+        if(etudiant.name.trim() != "")
+        {   
+            warning && setWarning(false)
+            setStudents(
+                [...students, {id : etudiant.id, name : etudiant.name}]
+            )
+        } else{
+            setWarning(true)
+        }
     }
 
+                
+    const warningMessage = warning ? <div className="alert alert-danger">Veuillez entrer une valeur valide</div> : <div></div>
+    
     return (
-        <div>
+        <div className="col-6">
+            {warningMessage}
             <h2>Nombre d'etudiants actuelles : {students.length}</h2>
 
-            <ul>
+            <ul className="list-group">
                 {studentsListItem}
             </ul>
 
