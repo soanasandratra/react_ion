@@ -1,9 +1,11 @@
-import React, { FunctionComponent, useState } from "react"
+import React, { FunctionComponent, useEffect, useState } from "react"
 import Etudiant from "../models/Etudiant"
 import AddStudent from "./AddStudent"
 const Todo: FunctionComponent = () => {
-    const [students, setStudents] = useState(
-        [
+    const [students, setStudents] = useState<any[]>([])
+
+    useEffect(() => {
+        setStudents([
             {
                 id: "1",
                 name: "Rakoto",
@@ -16,43 +18,50 @@ const Todo: FunctionComponent = () => {
                 id: "3",
                 name: "Fanantenana",
             },
-        ]
-    )
+        ])
+    }, [])
 
     const [warning, setWarning] = useState<boolean>(false)
 
-    const studentsListItem = students.map(student => {
-        return (
-            <li className="list-group-item" key={student.id}>{student.name}</li>
-        )
+    const setBg = (e: any) => {
+        e.target.classList.add("bg-info")
+        // console.log("mouse over");
     }
-    )
+    const removeBg = (e: any) => {
+        e.target.classList.remove("bg-info")
+        // console.log("mouse over");
+    }
 
-    const ajoutEtudiant = (etudiant : Etudiant) => {
-        if(etudiant.name.trim() != "")
-        {   
+    // const deleteThis = (e) => {
+    //     e.target.parentElement.remove()
+    // }
+
+
+
+    const ajoutEtudiant = (etudiant: Etudiant) => {
+        if (etudiant.name.trim() != "") {
             warning && setWarning(false)
             setStudents(
-                [...students, {id : etudiant.id, name : etudiant.name}]
+                [...students, { id: etudiant.id, name: etudiant.name }]
             )
-        } else{
+        } else {
             setWarning(true)
         }
     }
 
-                
+
     const warningMessage = warning ? <div className="alert alert-danger">Veuillez entrer une valeur valide</div> : <div></div>
-    
+
     return (
         <div className="col-6">
             {warningMessage}
             <h2>Nombre d'etudiants actuelles : {students.length}</h2>
 
             <ul className="list-group">
-                {studentsListItem}
+            
             </ul>
 
-            <AddStudent add={ ajoutEtudiant } />
+            <AddStudent add={ajoutEtudiant} />
         </div>
     )
 }

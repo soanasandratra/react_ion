@@ -13,8 +13,11 @@ const UseEffectUnmount: FunctionComponent = () => {
     document.addEventListener("keyup", getKeyPressed)
 
     useEffect(()=> {
-        
-    }, [keyPressed])
+        return () => {
+            console.log("componentDidUnmount");
+            
+        }
+    }, [])
     return (
         <div className='text-center'>
             <h3>{keyPressed}</h3>

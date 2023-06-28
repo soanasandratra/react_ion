@@ -1,14 +1,18 @@
 import React, { FunctionComponent, useState } from "react"
-import UseEffectUnmount from "./components/UseEffectUnmount";
-
+import ProfileData from "./components/Hooks/ProfileData";
+import { UserContext } from "./components/Hooks/Contexts/MyContexts";
 
 const App: FunctionComponent = () => {
-
+  const [user, setUser] = useState({
+    nom: "Nasandratra",
+    age: 19
+  })
   return (
-    <div className="container">
-
-      <UseEffectUnmount/>
-    </div>
+    <UserContext.Provider value={user}>
+      <div className="container">
+        <ProfileData />
+      </div>
+    </UserContext.Provider>
   )
 }
 
