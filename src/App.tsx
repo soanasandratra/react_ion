@@ -1,19 +1,20 @@
-import React, { FunctionComponent, useState } from "react"
-import ProfileData from "./components/Hooks/ProfileData";
-import { UserContext } from "./components/Hooks/Contexts/MyContexts";
+import React, { FunctionComponent } from "react"
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+
 
 const App: FunctionComponent = () => {
-  const [user, setUser] = useState({
-    nom: "Nasandratra",
-    age: 19
-  })
   return (
-    <UserContext.Provider value={user}>
-      <div className="container">
-        <ProfileData />
-      </div>
-    </UserContext.Provider>
-  )
+    <Router >
+      <Layout/>
+      <Routes>
+        <Route  path="/" Component={Home }/>
+        <Route path="/about" Component={About} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
