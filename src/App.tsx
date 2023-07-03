@@ -1,19 +1,22 @@
 import React, { FunctionComponent } from "react"
-import Layout from "./pages/Layout";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+import Sidebar from "./dashboard/Sidebar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./dashboard/pages/Dashboard";
+import Etudiant from "./dashboard/pages/Etudiant";
+import Enseignant from "./dashboard/pages/Enseignant";
 
+import "./App.css"
 
 const App: FunctionComponent = () => {
   return (
-    <Router >
-      <Layout/>
+    <BrowserRouter>
+      <Sidebar/>
       <Routes>
-        <Route  path="/" Component={Home }/>
-        <Route path="/about" Component={About} />
+        <Route path="/" element={<Dashboard/>}/>
+        <Route path="/etudiants" element={<Etudiant/>}/>
+        <Route path="/enseignants" element={<Enseignant/>}/>
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

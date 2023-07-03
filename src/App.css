@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* -------------------- styling---------------- */
+
+.sidebar{
+  position : fixed;
+  width : 20%;
+  height : 100vh;
+}
+.content{
+  margin-left: 20%;
+  padding: 20px;
+}
